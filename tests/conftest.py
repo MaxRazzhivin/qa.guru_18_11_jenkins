@@ -6,6 +6,7 @@ from selene import Browser, Config
 
 from utils import attach
 
+
 @pytest.fixture(scope='function')
 def setup_browser(request):
     options = Options()
@@ -23,7 +24,7 @@ def setup_browser(request):
         options=options
     )
 
-    browser = Browser(Config(driver))
+    browser = Browser(Config(driver=driver))
     yield browser
 
     attach.add_screenshot(browser)

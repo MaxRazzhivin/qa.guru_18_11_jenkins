@@ -28,7 +28,7 @@ class RegistrationPage:
         browser.element('#userNumber').type(value)
 
     def fill_date_of_birth(self, year, month, day):
-        browser.element('#dateOfBirth').scroll_to()
+        browser.element('#dateOfBirth').click()
         browser.element('.react-datepicker__month-select').type(month)
         browser.element('.react-datepicker__year-select').type(year)
         browser.element(f'.react-datepicker__day--0{day}').click()

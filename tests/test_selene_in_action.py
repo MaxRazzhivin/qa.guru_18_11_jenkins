@@ -1,3 +1,5 @@
+from selene.support.shared import browser
+
 from pages.registration_page import RegistrationPage
 import allure
 from allure_commons.types import Severity
@@ -13,6 +15,9 @@ def test_complete_do():
     with allure.step("Открываем главную страницу"):
         registration_page = RegistrationPage()
         registration_page.open()
+
+        browser.driver.execute_script("$('#fixedban').remove()")
+        browser.driver.execute_script("$('footer').remove()")
 
     with allure.step("Вводим имя"):
         registration_page.fill_first_name('Max')

@@ -1,7 +1,7 @@
 import pytest
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selene import Browser, Config
 
 from utils import attach
@@ -10,24 +10,23 @@ from utils import attach
 @pytest.fixture(scope='function')
 def setup_browser(request):
     options = Options()
-    capabilities = {
+    selenoid_capabilities = {
         "browserName": "chrome",
-        "browserVersion": "126.0",
+        "browserVersion": "latest",
         "selenoid:options": {
-            "enableVideo": False
+            "enableVNC": True,
+            "enableVideo": True
         }
     }
-    options.capabilities.update(capabilities)
+    options.capabilities.update(selenoid_capabilities)
+
     driver = webdriver.Remote(
-        command_executor="https://selenoid.autotests.cloud/wd/hub",
-        desired_capabilities=capabilities)
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options
+    )
 
     browser = Browser(Config(driver))
     yield browser
 
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_html(browser)
-    attach.add_video(browser)
-
-    browser.quit()
+    # Закрытие браузера после теста
+    driver.quit()

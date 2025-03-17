@@ -12,6 +12,10 @@ class RegistrationPage:
         browser.driver.execute_script("$('#fixedban').remove()")
         browser.driver.execute_script("$('footer').remove()")
 
+    def scroll_page(self):
+        browser.execute_script('window.scrollBy(0, 400);')
+        return self
+
     def fill_first_name(self, value):
         browser.element('#firstName').type(value)
 

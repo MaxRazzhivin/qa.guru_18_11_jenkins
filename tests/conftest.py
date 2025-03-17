@@ -9,8 +9,8 @@ from utils import attach
 def setup_browser():
     driver_options = webdriver.ChromeOptions()
     driver_options.page_load_strategy = 'eager'
-    browser.config.window_width = 1024
-    browser.config.window_height = 768
+    browser.config.window_width = 1920
+    browser.config.window_height = 1080
 
     options = Options()
     selenoid_capabilities = {

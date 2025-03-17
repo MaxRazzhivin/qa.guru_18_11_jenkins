@@ -5,7 +5,7 @@ from selene import have, by, be, command
 
 class RegistrationPage:
     def open(self):
-        browser.open('/')
+        browser.open('https://demoqa.com/automation-practice-form')
 
         # Удаляем рекламу
         browser.driver.execute_script("$('#RightSide_Advertisement').remove()")

@@ -19,6 +19,9 @@ def test_complete_do():
         browser.driver.execute_script("$('#fixedban').remove()")
         browser.driver.execute_script("$('footer').remove()")
 
+    with allure.step("Скролл страницы"):
+        browser.execute_script('window.scrollBy(0, 400);')
+
     with allure.step("Вводим имя"):
         registration_page.fill_first_name('Max')
 

@@ -11,17 +11,27 @@ import os
 def load_env():
     load_dotenv()
 
+
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser_version',
+        default='100.0'
+    )
+
+
 @pytest.fixture(scope='function', autouse=True)
-def setup_browser():
+def setup_browser(request):
+
     driver_options = webdriver.ChromeOptions()
     driver_options.page_load_strategy = 'eager'
     browser.config.window_width = 1920
     browser.config.window_height = 1080
 
+    browser_version = request.config.getoption('--browser_version')
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
-        "browserVersion": "100.0",
+        "browserVersion": browser_version,
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True

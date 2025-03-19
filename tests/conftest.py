@@ -15,7 +15,7 @@ def load_env():
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
-        default='100.0'
+        default='128.0'
     )
 
 
